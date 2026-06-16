@@ -1,12 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import StickerCard from './components/StickerCard'
+import AlbumSummary from './components/AlbumSummary'
 import { stickers } from './data/stickers'
 
 function App() {
-  // Estado inicial: todas las figuritas en 'Falta'
+  // Estado inicial: todas las figuritas en 'Falta' — intenta cargar desde localStorage
+  const storageKey = 'album_stickers_statuses_v1'
   const initialStatuses = Object.fromEntries(stickers.map((s) => [s.id, 'Falta']))
-  const [statuses, setStatuses] = useState(initialStatuses)
+  const [statuses, setStatuses] = useState(() => {
+    try {
+      const raw = localStorage.getItem(storageKey)
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        return { ...initialStatuses, ...parsed }
+      }
+    } catch (e) {
+      // ignore
+    }
+    return initialStatuses
+  })
 
   // Controles de búsqueda y filtro
   const [query, setQuery] = useState('')
@@ -23,6 +36,15 @@ function App() {
       return { ...prev, [id]: next }
     })
   }
+
+  // Persistir cambios en localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(statuses))
+    } catch (e) {
+      // ignore
+    }
+  }, [statuses])
 
   function handleFilterClick(value) {
     setStatusFilter(value)
@@ -56,6 +78,7 @@ function App() {
       </header>
 
       <div className="controls">
+        <AlbumSummary stickers={stickers} statuses={statuses} />
         <input
           type="search"
           placeholder="Buscar por nombre o número..."

@@ -288,3 +288,52 @@
   font-size: 12px;
 }
 
+/* Album summary styles */
+.album-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 320px;
+}
+
+.album-summary .summary-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.album-summary .summary-item {
+  background: rgba(0,0,0,0.03);
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.album-summary .label {
+  font-size: 12px;
+  color: #666;
+}
+
+.album-summary .value {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.album-summary .progress-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.album-summary .progress {
+  flex: 1 1 auto;
+  height: 12px;
+  background: #eee;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.album-summary .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#28a745,#6ad07a);
+}
