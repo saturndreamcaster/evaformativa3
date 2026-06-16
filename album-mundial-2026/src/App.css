@@ -182,3 +182,59 @@
     border-right-color: var(--border);
   }
 }
+
+/* Sticker card styles */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.sticker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border, #e6e6e6);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: var(--shadow, 0 1px 3px rgba(0,0,0,0.06));
+}
+
+.sticker-thumb img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.sticker-info {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.sticker-number {
+  font-weight: 700;
+  color: var(--muted, #333);
+}
+
+.sticker-name {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.sticker-group {
+  font-size: 12px;
+  color: #666;
+}
+
+.sticker-status {
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
